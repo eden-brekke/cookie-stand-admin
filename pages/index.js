@@ -1,37 +1,63 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import { useState } from "react";
 
 export default function Home() {
+  const [state, setState] = useState({
+    standData: [],
+  });
+
   return (
-    <div>
+    <>
       <Head>
         <title>Cookie Stand Admin</title>
-      </Head> 
+      </Head>
       <Header />
-      <main className="bg-emerald-50 flex flex-col items-center">
-        <CookieForm />
-        <ReportTable />
-      </main>
+      <Main standData={state} formHandler={formHandler} />
       <Footer copyright="2022"/>
-    </div>
-  )
+    </>
+  );
+
+  function formHandler(event) {
+    event.preventDefault();
+    let newStand = {
+      Location: event.target.Location.value,
+      minCustomers: event.target.MinimumCustomersPerHour.value,
+      maxCustomers: event.target.MaximumCustomersPerHour.value,
+      avgCookies: event.target.AverageCookiesPerHour.value,
+    };
+    setState(newStand);
+    event.target.reset();
+  }
 }
 
 function Header(){
-  return <header className="text-4xl font-medium bg-emerald-500 px-6 py-4">Cookie Stand Admin</header>
+  return ( 
+  <header className="text-4xl font-medium bg-emerald-500 px-6 py-4">
+    Cookie Stand Admin
+  </header>
+  )
 }
 
-function CookieForm(){
+function Main(props){
   return (
-    <form onSubmit="" className="w-full max-w-screen-lg bg-emerald-300 rounded px-5 py-3 my-10">
+    <main className="flex flex-col items-center py-4 pt-6 space-y-8">
+      <CookieForm onSubmit={props.formHandler} />
+      <p className="text-gray-500 text-md">Report Table Coming Soon...</p>
+      <ReportTable 
+      standData = {props.standData} />
+    </main>
+  )
+}
+function CookieForm(props){
+  return (
+    <form onSubmit={props.onSubmit} className="w-full max-w-screen-lg bg-emerald-300 rounded-md px-5 py-3 my-10">
     <h1 className="text-center text-2xl font-medium">Create Cookie Stand</h1>
     <div className="flex flex-wrap ">
       <div className="w-full px-3 mb-5">
         <label className="tracking-wide text-gray-700 text-sm font-bold " htmlFor="Location">
           Location
         </label>
-        <input className="placeholder-black w-full bg-gray-50 text-gray-700 rounded py-3 px-4 leading-tight h-1/2" Id="Location" type="string" placeholder="Barcelona" required='true'/>
+        <input className="placeholder-black w-full bg-gray-50 text-gray-700 rounded py-3 px-4 h-1/2" Id="Location" type="string" placeholder="Barcelona" required='true'/>
       </div>
     </div>
     <div className="flex flex-wrap w-full mb-3">
@@ -39,19 +65,19 @@ function CookieForm(){
         <label className="block text-center tracking-wide text-gray-700 text-sm font-bold mb-2">
           Minimum Customers Per Hour
         </label>
-        <input className="placeholder-black w-full bg-gray-50 text-gray-700 rounded py-3 px-4 leading-tight h-1/2" Id="MinimumCustomersPerHour" type="text" placeholder="2" required='true'/>
+        <input className="placeholder-black w-full bg-gray-50 text-gray-700 rounded py-3 px-4 h-1/2" Id="MinimumCustomersPerHour" type="text" placeholder="2" required='true'/>
       </div>
       <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
         <label className="block text-center tracking-wide text-gray-700 text-sm font-bold mb-2">
           Maximum Customers Per Hour
         </label>
-        <input className="placeholder-black w-full bg-gray-50 text-gray-700 rounded py-3 px-4 leading-tight h-1/2" Id="MaximumCustomersPerHour" type="text" placeholder="4" required='true' />
+        <input className="placeholder-black w-full bg-gray-50 text-gray-700 rounded py-3 px-4 h-1/2" Id="MaximumCustomersPerHour" type="text" placeholder="4" required='true' />
       </div>
       <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
         <label className="block text-center tracking-wide text-gray-700 text-sm font-bold mb-2">
           Average Customers Per Sale
         </label>
-        <input className="placeholder-black w-full bg-gray-50 text-gray-700 rounded py-3 px-4 leading-tight h-1/2" id="AverageCookiesPerHour" type="float" placeholder="2.5" required='true'/>
+        <input className="placeholder-black w-full bg-gray-50 text-gray-700 rounded py-3 px-4 h-1/2" id="AverageCookiesPerHour" type="float" placeholder="2.5" required='true'/>
       </div>
       <div className="h-100 w-full md:w-1/4 ">
 
@@ -65,11 +91,11 @@ function CookieForm(){
     )
 }
 
-function ReportTable(){
+function ReportTable({ standData }){
+  console.log(JSON.stringify(standData));
   return (
   <div>
-    <p className="mx-20 pl-96 pb-2.5">Report Table Coming Soon...</p>
-    <p className=""> JSON coming soon :)</p>
+    {JSON.stringify(standData) == '{"standData":[]}' ? "Enter A New Stand": <p>{JSON.stringify(standData)}</p>}
   </div>
   )
 }
