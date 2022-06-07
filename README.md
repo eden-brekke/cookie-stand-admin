@@ -6,7 +6,7 @@ Eden Brekke
 
 ### Collaborators:
 
-Ella, Tai, Nicholas, Ben the whole team
+Thomas, Ella, Tai, Nicholas, Ben the whole team
 
 ### Project Creation
 
