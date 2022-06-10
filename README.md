@@ -6,7 +6,8 @@ Eden Brekke
 
 ### Collaborators:
 
-Thomas, Ella, Tai, Nicholas, Ben the whole team
+Special Shoutout to Thomas, my code looks remarkably like his now because he was kind enough to let me reference his code to troubleshoot mine and after many hours it all works and I'm so grateful :) <3
+Ella, Tai, Nicholas, Ben the whole team
 
 ### Project Creation
 
