@@ -1,5 +1,4 @@
 export default function Footer(props) {
-  // console.log(props.resources)
   if (props.resources) {
     if (props.resources.length < 2) {
       return (

@@ -1,6 +1,5 @@
 import { hours } from '../data';
 import Head from "next/head";
-// import { useState } from 'react';
 import { useAuth } from "../contexts/auth";
 import useResource from "../hooks/useResource";
 import Header from "../components/Header";

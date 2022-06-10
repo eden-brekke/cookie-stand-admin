@@ -1,7 +1,6 @@
 import { hours } from "../data";
 
 export default function ReportTable(props) {
-  // props.storeData
 
   if (props.resources.length > 0) {
     let sales = props.resources.map((hour, i) => {

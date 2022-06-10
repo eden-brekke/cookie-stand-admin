@@ -12,7 +12,6 @@ export default function Main(props) {
       <ReportTable 
       resources={props.resources} 
       deleteResource={props.deleteResource} 
-      // storeData={props.storeData} 
       />
       </>
       :
