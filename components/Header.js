@@ -1,16 +1,37 @@
-import Link from 'next/link';
-
-export default function Header(){
-  return ( 
-    <>
-    <header className="relative inset-x-0 top-0 flex justify-between p-2 bg-emerald-500">
-      <h1 className="text-4xl font-medium bg-emerald-500 px-6 py-4">Cookie Stand Admin</h1>
-      <div className="items-center pb-2 font-medium">
-      <Link href="/overview">
-        <button className='bg-emerald-50 text-zinc-600 px-4 py-1 font-medium rounded-md mx-2 my-5'>Overview</button>
-      </Link>
-      </div>
-    </header>
-    </>
-    )
+import { useAuth } from "../contexts/auth";
+export default function Header(props) {
+  const { user, logout } = useAuth();
+  if (props.user) {
+    return (
+      <header className="flex py-4 px-10 display bg-emerald-400">
+        <h1 className="w-1/2 text-3xl font-bold text-gray-700 ">
+          Cookie Stand Admin
+        </h1>
+        <div className="flex w-1/2 space-x-3 text-right">
+          <p className="px-3 py-1 bg-white rounded-md opacity-60 h-7">
+            {user.username}
+          </p>
+          <button
+            className="px-2 py-1 rounded-md h-7 bg-emerald-600 text-gray-100 "
+            onClick={logout}
+          >
+            Sign Out
+          </button>
+          <p className="px-3 pt-1 bg-white rounded-md opacity-80 h-7">
+            Overview
+          </p>
+        </div>
+      </header>
+    );
+  } else {
+    return (
+      <header className="px-8 py-4 bg-emerald-500">
+        <h1 className="text-3xl font-bold text-gray-700 ">
+          Cookie Stand Admin
+        </h1>
+      </header>
+    );
+  }
 }
+
+
