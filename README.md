@@ -1,4 +1,6 @@
-# Lab 37 Welcome to React, Next.js & TailwindCSS
+# Lab 37-41 Welcome to React, Next.js & TailwindCSS Let's Make a cookie stand!
+
+[Deployed Site](https://cookie-stand-admin-blond.vercel.app/)
 
 ## Author:
 
