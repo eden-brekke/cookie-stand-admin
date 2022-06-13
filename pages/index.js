@@ -34,7 +34,7 @@ export default function Home() {
   );
 
   function formHandler(event) {
-    e.preventDefault();
+    event.preventDefault();
     let newStore = {
       location: event.target.location.value,
       hourly_sales: CalcCookies(event),
