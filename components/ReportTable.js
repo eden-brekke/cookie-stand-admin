@@ -1,4 +1,5 @@
 import { hours } from "../data";
+import Link from 'next/link';
 
 export default function ReportTable(props) {
 
@@ -17,7 +18,7 @@ export default function ReportTable(props) {
       return (
         <tr key={i} className="even:bg-emerald-200 odd:bg-emerald-300 border-2 border-emerald-500">
           <td className="pl-4 pr-2 font-bold text-left border-2 border-emerald-500">
-            {store.location}
+            <Link href={`/${store.id}`}><a>{store.location}</a></Link>
             <DeleteButton
               deleteResource={props.deleteResource}
               id={store.id}
